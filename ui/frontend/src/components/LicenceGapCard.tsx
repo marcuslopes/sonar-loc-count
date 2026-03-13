@@ -26,6 +26,16 @@ export default function LicenceGapCard({ totalLoc }: LicenceGapCardProps) {
         Licence Gap
       </p>
 
+      {/* Total LoC display */}
+      <div>
+        <p className="text-xs mb-0.5" style={{ color: 'var(--color-muted)' }}>
+          Scanned total
+        </p>
+        <p className="text-2xl font-bold leading-none" style={{ color: 'var(--color-accent)' }}>
+          {totalLoc.toLocaleString()}
+        </p>
+      </div>
+
       {/* Input */}
       <div>
         <label
@@ -90,30 +100,26 @@ export default function LicenceGapCard({ totalLoc }: LicenceGapCardProps) {
           <>
             <span className="text-base">🔴</span>
             <span>
-              You need{' '}
+              Deficit:{' '}
               <span className="font-bold text-red-400">
                 {gap.toLocaleString()}
               </span>{' '}
-              more LoC
+              LoC short
             </span>
           </>
         ) : (
           <>
             <span className="text-base">✅</span>
-            <span>Licence covers your codebase</span>
+            <span>
+              Covered — surplus{' '}
+              <span className="font-bold" style={{ color: '#86efac' }}>
+                {Math.abs(gap).toLocaleString()}
+              </span>{' '}
+              LoC
+            </span>
           </>
         )}
       </div>
-
-      {licenceLoc > 0 && !hasGap && (
-        <p className="text-xs" style={{ color: 'var(--color-muted)' }}>
-          Surplus:{' '}
-          <span style={{ color: '#86efac' }}>
-            {Math.abs(gap).toLocaleString()} LoC
-          </span>{' '}
-          headroom
-        </p>
-      )}
     </div>
   )
 }

@@ -1,7 +1,8 @@
 import type { ScanEvent, ScanSummary } from '../types'
 
-const VITE_API_URL =
-  (import.meta as { env: Record<string, string> }).env?.VITE_API_URL ??
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const VITE_API_URL: string =
+  ((import.meta as unknown as { env: Record<string, string> }).env?.VITE_API_URL) ??
   'http://localhost:8000'
 
 export async function startScan(

@@ -13,6 +13,10 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
+# Copy the Sonar language definitions file from the repo root
+# (the build context must be set to the repo root: docker build -f ui/backend/Dockerfile .)
+COPY sonar-lang-defs.txt ./sonar-lang-defs.txt
+
 EXPOSE 8000
 
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000", "--workers", "1"]
